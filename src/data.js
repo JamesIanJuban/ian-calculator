@@ -3,6 +3,8 @@ export const numeric = [
     { text: 'cos(', operation: 'Math.cos(' },
     { text: 'tan(', operation: 'Math.tan(' },
     { text: 'log(', operation: 'Math.log10(' },
+    { text: '<' },
+    { text: '>' },
     { text: '√', operation: 'Math.sqrt(' },
     { text: '^' },
     { text: '(' },

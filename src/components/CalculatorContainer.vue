@@ -1,31 +1,31 @@
 <template>
-    <div class="calculator justify-center items-center">
+    <div class="container box justify-center items-center p-8">
         <!-- Calculator display -->
-        <div class="display mb-6 mt-12">
-            <input type="text" v-model="inputStr" placeholder="Enter Expression" @keydown.enter="calculate" @input="validateInput" class="input-text w-4/5 p-3 text-lg rounded-lg border-2 border-gray-300 bg-gray-100 text-gray-800 focus:border-blue-500 focus:outline-none transition duration-300 ease-in-out">
+        <div class="display mb-12 mt-12 flex justify-center">
+          <input type="text" v-model="inputStr" placeholder="Enter Expression" @keydown.enter="calculate" @input="validateInput" class="input-text w-full max-w-xl px-6 py-4 md:py-6 text-lg rounded-lg text-white border-2 border-gray-300 bg-blue-900 placeholder-gray-300 focus:border-blue-500 focus:outline-none transition duration-300 ease-in-out">
         </div>
         <!-- Operation buttons -->  
-        <div class="">
-            <button v-for="item in numeric" :key="item.text" class="btn" @click="handleButtonClick(item)">{{ item.text }}</button>
-            <button class="bg-gray-300 py-2 px-3 rounded-lg" @click="calculate">Calculate</button>
-            <button class="bg-gray-300 py-2 px-3 rounded-lg" @click="clear">Clear</button>
-            <button class="text-white bg-purple-700 hover:bg-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900" @click="remove">Backspace</button>
+        <div class="grid grid-cols-5 gap-5 px-6 py-4">
+            <button v-for="item in numeric" :key="item.text" class="text-red-500 py-1.5 bg-gray-200 hover:bg-gray-300" @click="handleButtonClick(item)">{{ item.text }}</button>
+            <button class="text-white font-semibold text-sm py-2 bg-red-600 hover:bg-red-700 rounded-lg focus:outline-none shadow-md transition duration-300 ease-in-out" @click="calculate">=</button>
+            <button class="text-white font-semibold text-sm py-2 bg-red-600 hover:bg-red-700 rounded-lg focus:outline-none shadow-md transition duration-300 ease-in-out" @click="clear">AC</button>
+            <button class="text-white font-semibold text-sm py-2 bg-red-600 hover:bg-red-700 rounded-lg focus:outline-none shadow-md transition duration-300 ease-in-out" @click="remove">←</button>
         </div>
     </div>
 </template>
   
 <script>
-  import { numeric } from '@/data.js';
+import { numeric } from '@/data.js';
   
-  export default {
-         name: "CalculatorContainer",
+export default {
+            name: "CalculatorContainer",
       data() {
-        return {
-         inputStr: '',
-         numeric: numeric
-      };
-    },
-    methods: {
+          return {
+            inputStr: '',
+            numeric: numeric
+          };
+      },
+  methods: {
       handleButtonClick(button) {
           if (button.operation) {
             this.inputStr += button.operation;
@@ -56,12 +56,13 @@
           } else {
             throw new Error('Invalid expression');
           }
-        } catch (error) {
-          this.inputStr = error.message;
-        }
+          } 
+          catch (error) {
+            this.inputStr = error.message;
+          }
       }
-    }
-  };
-  </script>
+  }
+};
+</script>
   
   
