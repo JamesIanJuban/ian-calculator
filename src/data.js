@@ -4,7 +4,7 @@ export const numeric = [
     { text: 'tan(', operation: 'Math.tan( ' },
     { text: 'log(', operation: 'Math.log10( ' },
     { text: '√', operation: 'Math.sqrt( ' },
-    { text: '^' },
+    { text: 'x²', operation: '**' },
     { text: 'π', operation: 'Math.PI' },
     { text: '(' },
     { text: ')' },
