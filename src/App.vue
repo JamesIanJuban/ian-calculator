@@ -1,6 +1,6 @@
 <template>
   <article class="text-center"> 
-    <h1 class="text-4xl text-red-500 mt-10 font-bold">Scientific Calculator</h1>
+    <h1 class="text-4xl text-red-500 mt-8 font-bold">Scientific Calculator</h1>
       <CalculatorContainer/>
   </article>
 </template>
