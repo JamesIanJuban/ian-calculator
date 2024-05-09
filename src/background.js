@@ -11,18 +11,21 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
     { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
 
-  async function createWindow() {
-    // Create the browser window.
-  const win = new BrowserWindow({
-      width: 500,
+async function createWindow() {
+// Create the browser window.
+const win = new BrowserWindow({
+      minWidth: 550,
+      minHeight: 800,
+      maxWidth: 550,
+      maxHeight: 800,
+      width: 550,
       height: 800,
-      autoHideMenuBar:true,
-      webPreferences:
-    {
-      devTools: false,
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
-    }
+      autoHideMenuBar: true,
+      webPreferences: {
+          devTools: false,
+          nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
+          contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
+      }
   })
 
     if (process.env.WEBPACK_DEV_SERVER_URL) {
