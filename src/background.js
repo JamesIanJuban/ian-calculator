@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 
 // import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
@@ -19,7 +19,8 @@ const win = new BrowserWindow({
       maxWidth: 550,
       maxHeight: 800,
       width: 550,
-      height: 800,
+      height: 650,
+      frame: false,
       autoHideMenuBar: true,
       webPreferences: {
           devTools: false,
@@ -44,7 +45,7 @@ const win = new BrowserWindow({
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
-  app.quit()
+      app.quit()
     }
   })
 
@@ -62,11 +63,25 @@ const win = new BrowserWindow({
     // Install Vue Devtools
     try {
      // await installExtension(VUEJS3_DEVTOOLS)
-    } catch (e) {
-        console.error('Vue Devtools failed to install:', e.toString())
+      } catch (e) {
+          console.error('Vue Devtools failed to install:', e.toString())
+      }
     }
-  }
-  createWindow()
+    createWindow()
+  })
+
+  ipcMain.on('minimize-window', () => {
+      const window = BrowserWindow.getFocusedWindow()
+      window.minimize()
+  })
+
+  ipcMain.on('maximize-window', () => {
+      const window = BrowserWindow.getFocusedWindow()
+      if (window.isMaximized()) {
+          window.unmaximize()
+      } else {
+          window.maximize()
+      }
   })
 
 // Exit cleanly on request from parent process in development mode.
