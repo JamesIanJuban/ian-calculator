@@ -11,7 +11,7 @@
          rel="stylesheet">
   <!-- Container with gradient background -->
   <div class="overflow-hidden justify-center items-center p-8 relative bg-gradient-to-br from-gray-800 to-gray-900">
-    <!-- Calculator display -->
+  <!-- Calculator display -->
   <div class="display mb-6 mt-6 flex justify-center">
     <input 
         type="text" 
@@ -20,7 +20,7 @@
         autofocus 
         @keydown.enter="calculate" 
         @input="validateInput" 
-        class="input-text w-full h-[16rem] max-w-xl px-8 py-6 md:py-6 text-lg font-bold rounded-lg text-white border-2 border-red-500/50 bg-red-600 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 placeholder-gray-100 focus:border-red-500 focus:outline-none transition duration-300 ease-in-out">
+        class="input-text w-full h-[15rem] max-w-xl px-8 py-6 md:py-8 text-2xl md:text-3xl rounded-lg text-white border-2 border-red-500/50 bg-red-600 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 placeholder-gray-100 focus:border-red-500 focus:outline-none transition duration-300 ease-in-out">
   </div>    
   <!-- Operation buttons -->  
   <div class="grid grid-cols-5 gap-4 px-6 py-4">
@@ -67,6 +67,7 @@
         d="M6 18L18 6M6 6l12 12"/>
   </svg>
   </button>
+
   <HistoryWindow :show="showHistory" 
         :history="history" 
         @toggle="toggleHistory" />

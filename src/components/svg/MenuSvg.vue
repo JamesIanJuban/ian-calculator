@@ -1,5 +1,4 @@
 <template>
-  <div @click="openHistory" class="cursor-pointer">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-8 w-8"
@@ -15,5 +14,6 @@
     >
     </path>
     </svg>
-  </div>
 </template>
+<script>
+</script>
