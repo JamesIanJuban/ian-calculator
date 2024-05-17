@@ -41,7 +41,7 @@ export default {
     return {
       historyVisible: false,
       isMaximized: false,
-      historyData: ["Calculation 1", "Calculation 2", "Calculation 3"] // Sample data for testing
+      historyData: [" "] // Sample data for testing
     };
   },
   methods: {
@@ -58,16 +58,16 @@ export default {
       }
     },
     maximizeOrRestore() {
-      if (this.$electron) {
-        let window = this.$electron.remote.getCurrentWindow();
-        if (this.isMaximized) {
-          window.unmaximize();
-        } else {
-          window.maximize();
-        }
-        this.isMaximized = !this.isMaximized;
-      }
-    },
+  if (this.$electron) {
+    let window = this.$electron.remote.getCurrentWindow();
+    if (this.isMaximized) {
+      window.restore(); // Use restore() to unmaximize the window
+    } else {
+      window.maximize();
+    }
+    this.isMaximized = !this.isMaximized;
+  }
+},
     close() {
       if (this.$electron) {
         let window = this.$electron.remote.getCurrentWindow();
