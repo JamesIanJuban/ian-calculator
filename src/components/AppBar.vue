@@ -3,7 +3,7 @@
     <button @click="toggleHistory" class="flex items-left ml-2 h-4 space-x-4 mt-2 transition duration-300 ease-in-out transform hover:scale-110">
       <MenuSvg class="w-10 h-8" />
     </button>
-    <HistoryWindow v-if="historyVisible" :show="historyVisible" :history="historyData" @toggle="toggleHistory" />
+    <HistoryWindow v-if="historyVisible" :show="historyVisible" :history="historyData" @toggle="toggleHistory" @clear-history="clearHistory" />
     <div class="flex space-x-4 mr-4">
       <button class="text-gray-500 hover:text-gray-700 mt-2 focus:outline-none" @click="minimize">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import MenuSvg from '@/components/svg/MenuSvg.vue';
-import HistoryWindow from '@/components/HistoryWindow.vue';
+import MenuSvg from './svg/MenuSvg.vue';
+import HistoryWindow from './HistoryWindow.vue';
 
 export default {
   name: 'AppBar',
@@ -37,43 +37,48 @@ export default {
     MenuSvg,
     HistoryWindow,
   },
+  props: {
+    historyData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       historyVisible: false,
       isMaximized: false,
-      historyData: [" "] // Sample data for testing
     };
   },
   methods: {
     toggleHistory() {
-      console.log('Toggling History. Current state:', this.historyVisible);
       this.historyVisible = !this.historyVisible;
-      console.log('Updated state:', this.historyVisible);
     },
     minimize() {
-      // Handle window minimize, for example using Electron
       if (this.$electron) {
         let window = this.$electron.remote.getCurrentWindow();
         window.minimize();
       }
     },
     maximizeOrRestore() {
-  if (this.$electron) {
-    let window = this.$electron.remote.getCurrentWindow();
-    if (this.isMaximized) {
-      window.restore(); // Use restore() to unmaximize the window
-    } else {
-      window.maximize();
-    }
-    this.isMaximized = !this.isMaximized;
-  }
-},
+      if (this.$electron) {
+        let window = this.$electron.remote.getCurrentWindow();
+        if (this.isMaximized) {
+          window.restore();
+        } else {
+          window.maximize();
+        }
+        this.isMaximized = !this.isMaximized;
+      }
+    },
     close() {
       if (this.$electron) {
         let window = this.$electron.remote.getCurrentWindow();
         window.close();
       }
-    }
-  }
+    },
+    clearHistory() {
+      this.$emit('clear-history');
+    },
+  },
 };
 </script>
