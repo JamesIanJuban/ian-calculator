@@ -2,8 +2,8 @@
   <transition name="slide-fade">
     <div v-if="show" 
       class="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black bg-opacity-50">
-    <div class="bg-white rounded-lg p-8 max-w-lg w-60 text-gray-700 relative">
-    <h3 class="text-lg font-semibold mb-4">History</h3>
+    <div class="bg-white rounded-lg p-8 max-w-lg w-80 text-gray-700 relative">
+    <h3 class="text-lg font-semibold px-6 py-2 mb-4">History</h3>
     <ul class="divide-y divide-gray-300">
     <li v-if="history.length === 0" 
       class="py-2 text-gray-700">No history yet</li>
@@ -12,14 +12,15 @@
       :key="index" 
       class="py-2">
     <div class="flex justify-between items-center">
-    <span class="text-gray-700">{{ calculation.expression }}</span>
-    <span class="text-green-500">{{ calculation.result }}</span>
+      <span class="text-gray-700">{{ calculation.expression }}</span>
+      <span class="text-gray-900"> = </span>
+      <span class="text-green-500">{{ calculation.result }}</span>
     </div>
     </li>
     </ul>
     <!-- Add clear history button -->
     <button @click="clearHistory" 
-      class="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-lg focus:outline-none">
+      class="mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold px-2 py-2 rounded-lg focus:outline-none">
           Clear History
     </button>
         <!-- Add close button -->
@@ -45,11 +46,11 @@
 export default {
   name: 'HistoryWindow',
   props: {
-    show: Boolean,
-    history: {
-      type: Array,
-      required: true
-    }
+  show: Boolean,
+  history: {
+    type: Array,
+    required: true
+  }
   },
   methods: {
     toggle() {
